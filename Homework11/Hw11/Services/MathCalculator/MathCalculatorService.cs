@@ -10,6 +10,7 @@ public class MathCalculatorService : IMathCalculatorService
         Validator.Validate(expression!);
         var parse = Parser.ConvertToPostfixForm(expression!);
         dynamic tree = ExpressionTreeBuilder.CreateExpressionTree(parse);
-        return await ExpressionTreeVisitor.VisitExpression(tree);
+        var result = await ExpressionTreeVisitor.VisitExpression(tree);
+        return result;
     }
 }
