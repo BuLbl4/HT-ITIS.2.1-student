@@ -1,9 +1,11 @@
-﻿using Hw10.DbModels;
+﻿using System.Diagnostics.CodeAnalysis;
+using Hw10.DbModels;
 using Hw10.Dto;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hw10.Services.CachedCalculator;
 
+[ExcludeFromCodeCoverage]
 public class MathCachedCalculatorService : IMathCalculatorService
 {
 	private readonly ApplicationContext _dbContext;
