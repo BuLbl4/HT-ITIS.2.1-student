@@ -1,4 +1,7 @@
-﻿namespace Hw11.Exceptions;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Hw11.Exceptions;
+[ExcludeFromCodeCoverage]
 
 public class InvalidSyntaxException : Exception
 {
