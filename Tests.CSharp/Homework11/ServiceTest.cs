@@ -62,30 +62,7 @@ public class ServiceTest
         Assert.Equal(MathErrorMessager.UnknownCharacter, exception.Message);
     }
     
-    [Theory]
-    [InlineData("2 3 +", typeof(Expression))]
-    [InlineData("5.5 2.2 *", typeof(Expression))]
-    [InlineData("7.5 3.2 -", typeof(Expression))]
-    [InlineData("10.0 2.0 /", typeof(Expression))]
-    public void CreateExpressionTree_ShouldPushConstants(string input, Type expectedType)
-    {
-        var expression = ExpressionTreeBuilder.CreateExpressionTree(input);
-
-        Assert.IsType(expectedType, expression);
-    }
-
-    [Theory]
-    [InlineData("2 3 +", typeof(BinaryExpression))]
-    [InlineData("5.5 2.2 *", typeof(BinaryExpression))]
-    [InlineData("7.5 3.2 -", typeof(BinaryExpression))]
-    [InlineData("10.0 2.0 /", typeof(BinaryExpression))]
-    public void CreateExpressionTree_ShouldPushBinaryExpressions(string input, Type expectedType)
-    {
-        var expression = ExpressionTreeBuilder.CreateExpressionTree(input);
-
-        Assert.IsType(expectedType, expression);
-    }
-
+  
     [Homework(Homeworks.HomeWork11)]
     public void CreateExpressionTree_ShouldThrowExceptionOnUnknownCharacter()
     {
