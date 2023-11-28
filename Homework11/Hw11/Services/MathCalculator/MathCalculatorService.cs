@@ -3,7 +3,6 @@ using Hw11.Services.MathCalculator.ExpressionBuilder;
 using Hw11.Services.MathCalculator.ParseAndValidate;
 
 namespace Hw11.Services.MathCalculator;
-[ExcludeFromCodeCoverage]
 
 public class MathCalculatorService : IMathCalculatorService
 {

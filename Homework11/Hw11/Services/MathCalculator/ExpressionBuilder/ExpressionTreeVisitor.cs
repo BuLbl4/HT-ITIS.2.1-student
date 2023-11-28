@@ -5,7 +5,6 @@ using Hw11.ErrorMessages;
 namespace Hw11.Services.MathCalculator.ExpressionBuilder;
 
 
-[ExcludeFromCodeCoverage]
 public class ExpressionTreeVisitor
 {
    public static async Task<double> VisitExpression(Expression expression)
