@@ -5,9 +5,9 @@ using Hw11.ErrorMessages;
 namespace Hw11.Services.MathCalculator.ExpressionBuilder;
 
 
-[ExcludeFromCodeCoverage]
 public class ExpressionTreeVisitor
 {
+    [ExcludeFromCodeCoverage]
    public static async Task<double> VisitExpression(Expression expression)
    {
        return await VisitAsync((dynamic)expression);

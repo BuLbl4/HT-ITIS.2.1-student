@@ -1,12 +1,11 @@
 using System.Linq.Expressions;
-using Hw9;
-using Hw9.ErrorMessages;
-using Hw9.Services.MathCalculator;
-using Hw9.Services.ParserAndValidator;
+using Hw10;
+using Hw10.ErrorMessages;
+using Hw10.Services.MathCalculator;
+using Hw10.Services.MathCalculator.ParserAndValidator;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Tests.RunLogic.Attributes;
 using Xunit;
-namespace Tests.CSharp.Homework9;
+namespace Tests.CSharp.Homework10;
 
 public class ServicesTest : IClassFixture<WebApplicationFactory<Program>>
 {
@@ -15,9 +14,8 @@ public class ServicesTest : IClassFixture<WebApplicationFactory<Program>>
     public ServicesTest(WebApplicationFactory<Program> fixture)
     {
         _client = fixture.CreateClient();
-    }    
-    
-   
+    }
+
     [Theory]
     [InlineData("-2 - 7", "-2 7 - ")]
     [InlineData("(-2) - (-7)", "-2 -7 - ")]
@@ -60,7 +58,6 @@ public class ServicesTest : IClassFixture<WebApplicationFactory<Program>>
         // Assert
         Assert.Equal(expectedResult, result);
     }
-
     [Fact]
     public void Calculate_ShouldThrowExceptionOnUnknownCharacter()
     {
@@ -73,4 +70,5 @@ public class ServicesTest : IClassFixture<WebApplicationFactory<Program>>
         var exception = Assert.Throws<Exception>(() => ExpressionTreeVisitor.Calculate(binExpr, constLeft, constRight));
         Assert.Equal(MathErrorMessager.UnknownCharacter, exception.Message);
     }
+    
 }
