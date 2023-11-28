@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using Hw10.ErrorMessages;
 
 namespace Hw10.Services.MathCalculator;
+[ExcludeFromCodeCoverage]
 public class ExpressionTreeVisitor : ExpressionVisitor
 {
     public static async Task<double> VisitAsync(Expression expression)
