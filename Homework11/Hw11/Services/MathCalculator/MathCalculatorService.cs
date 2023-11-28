@@ -12,7 +12,6 @@ public class MathCalculatorService : IMathCalculatorService
         Validator.Validate(expression!);
         var parse = Parser.ConvertToPostfixForm(expression!);
         dynamic tree = ExpressionTreeBuilder.CreateExpressionTree(parse);
-        var result = await ExpressionTreeVisitor.VisitExpression(tree);
-        return result;
+        return await ExpressionTreeVisitor.VisitExpression(tree);
     }
 }
