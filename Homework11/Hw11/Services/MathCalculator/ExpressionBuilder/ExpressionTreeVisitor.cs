@@ -7,6 +7,7 @@ namespace Hw11.Services.MathCalculator.ExpressionBuilder;
 
 public class ExpressionTreeVisitor
 {
+    [ExcludeFromCodeCoverage]
    public static async Task<double> VisitExpression(Expression expression)
    {
        return await VisitAsync((dynamic)expression);
