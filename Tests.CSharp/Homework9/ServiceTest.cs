@@ -51,12 +51,11 @@ public class ServicesTest : IClassFixture<WebApplicationFactory<Program>>
     [Homework(Homeworks.HomeWork9)]
     public void Calculate_ShouldThrowExceptionOnDivisionByZero()
     {
-        // Arrange
+        
         var binExpr = ExpressionType.Divide;
         var constLeft = 3.0;
         var constRight = 0.0;
 
-        // Act & Assert
         var exception = Assert.Throws<Exception>(() => ExpressionTreeVisitor.Calculate(binExpr, constLeft, constRight));
         Assert.Equal(MathErrorMessager.DivisionByZero, exception.Message);
     }
