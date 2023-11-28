@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hw10.Services.CachedCalculator;
 
-[ExcludeFromCodeCoverage]
 public class MathCachedCalculatorService : IMathCalculatorService
 {
 	private readonly ApplicationContext _dbContext;
@@ -20,33 +19,25 @@ public class MathCachedCalculatorService : IMathCalculatorService
 
 	public async Task<CalculationMathExpressionResultDto> CalculateMathExpressionAsync(string? expression)
 	{
-		try
+		var solvingExpression =
+			await _dbContext.SolvingExpressions.FirstOrDefaultAsync(se => se.Expression == expression);
+		if (solvingExpression != null)
+			return new CalculationMathExpressionResultDto(solvingExpression.Result);
+		
+
+		var calculationResult = await _simpleCalculator.CalculateMathExpressionAsync(expression);
+
+		if (calculationResult.IsSuccess)
 		{
-			var solvingExpression =
-				await _dbContext.SolvingExpressions.FirstOrDefaultAsync(se => se.Expression == expression);
-			if (solvingExpression != null)
+			var newSolvingExpression = new SolvingExpression
 			{
-				return new CalculationMathExpressionResultDto(solvingExpression.Result);
-			}
-
-			var calculationResult = await _simpleCalculator.CalculateMathExpressionAsync(expression);
-
-			if (calculationResult.IsSuccess)
-			{
-				var newSolvingExpression = new SolvingExpression
-				{
-					Result = calculationResult.Result,
-					Expression = expression!
-				};
-				await _dbContext.SolvingExpressions.AddAsync(newSolvingExpression);
-				await _dbContext.SaveChangesAsync();
-			}
-
-			return calculationResult;
+				Result = calculationResult.Result,
+				Expression = expression!
+			};
+			await _dbContext.SolvingExpressions.AddAsync(newSolvingExpression);
+			await _dbContext.SaveChangesAsync();
 		}
-		catch (Exception e)
-		{
-			return new CalculationMathExpressionResultDto(e.Message);
-		}
+
+		return calculationResult;
 	}
 }
