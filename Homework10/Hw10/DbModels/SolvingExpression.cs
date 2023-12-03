@@ -3,7 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Hw10.DbModels;
 
-[ExcludeFromCodeCoverage]
 public class SolvingExpression
 {
 	public int SolvingExpressionId { get; set; }

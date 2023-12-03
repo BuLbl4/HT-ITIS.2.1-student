@@ -6,7 +6,6 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Homework10.Migrations
 {
-    [ExcludeFromCodeCoverage]
     public partial class InitDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
