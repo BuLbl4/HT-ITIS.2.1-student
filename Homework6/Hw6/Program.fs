@@ -13,7 +13,6 @@ open Hw6.Calculator
 
 let calculatorHandler: HttpHandler =
     fun next ctx ->
-        let query = ctx.Request.Query
         let result: Result<string, string> = maybe {
             let! args = ctx.TryBindQueryString<calculatorArgs>()
             let! args = parseArgs args
@@ -36,10 +35,10 @@ let webApp =
     
 type Startup() =
     member _.ConfigureServices (services : IServiceCollection) =
-        services.AddGiraffe() |> ignore
+        services.AddGiraffe().AddMiniProfiler(fun option -> option.RouteBasePath <- "/profiler") |> ignore
 
     member _.Configure (app : IApplicationBuilder) (_ : IHostEnvironment) (_ : ILoggerFactory) =
-        app.UseGiraffe webApp
+        app.UseMiniProfiler().UseGiraffe webApp
    
    
 [<EntryPoint>]       
