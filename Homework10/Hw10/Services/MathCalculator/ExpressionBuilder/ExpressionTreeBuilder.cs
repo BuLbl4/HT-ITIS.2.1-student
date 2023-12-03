@@ -4,7 +4,6 @@ using Hw10.ErrorMessages;
 
 namespace Hw10.Services.MathCalculator.ExpressionBuilder;
 
-[ExcludeFromCodeCoverage]
 public class ExpressionTreeBuilder
 {
     public static Expression CreateExpressionTree(string input)

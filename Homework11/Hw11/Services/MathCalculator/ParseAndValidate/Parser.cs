@@ -4,7 +4,6 @@ using System.Text;
 namespace Hw11.Services.MathCalculator.ParseAndValidate;
 
 
-[ExcludeFromCodeCoverage]
 
 public static class Parser
 {
